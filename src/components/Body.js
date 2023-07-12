@@ -1,5 +1,4 @@
 import RestaurantCard from "./RestaurantCard"; // Default Import
-import { restaurantList } from "../config";
 import { useState, useEffect } from "react"; // Named Import
 import Shimmer from "./Shimmer";
 

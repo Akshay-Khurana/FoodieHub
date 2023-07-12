@@ -2,15 +2,16 @@
 // It is an object in js
 
 import { useState } from "react";
+import Logo from "../assets/img/foodie.jpg";
 
 const styleLogo = {
-    width:"60px",
+    width:"70px",
 }
 const Title = () => {
     return (
       <img
         alt="Logo"
-        src="https://10619-2.s.cdn12.com/rests/original/340_328462255.jpg"
+        src={Logo}
         style = {styleLogo}
       />
     );
