@@ -1,8 +1,10 @@
 .header {
+    height: 80px;
     display: flex;
-    justify-content: space-between ;
-    margin: 10px;
-    border: 1px solid black;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: black; */
+    padding: 5px;
 }
 
 .nav-items > ul{
@@ -19,11 +21,10 @@
 }
 
 .card{
-    width: 200px;
-    border: 1px solid black;
+    width: 250px;
     padding: 10px;
+    border: 1px solid black;
     margin: 10px;
-    word-break: break-all;
 }
 
 .card > img {
@@ -34,3 +35,20 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+
+
+.shimmer-card {
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+    margin: 10px;
+    background-color: lightgrey;
+  }
+
+  .cardslist {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    border: 1px solid black;
+    margin: 10px;
+  }

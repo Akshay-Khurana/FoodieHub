@@ -2,7 +2,7 @@ export const IMG_CDN_URL = "https://res.cloudinary.com/swiggy/image/upload/fl_lo
 
 export const restaurantList = [
     {
-    "info": {
+    "data": {
         "id": "610931",
         "name": "Pizza Shopee",
         "cloudinaryImageId": "mdqeqzvw13gfijzdvwpx",
@@ -120,7 +120,7 @@ export const restaurantList = [
       }
     },
     {
-      "info": {
+      "data": {
         "id": "195225",
         "name": "Madras Dosa Corner",
         "cloudinaryImageId": "yhcxrd6nixlbs9by2zz6",
@@ -236,7 +236,7 @@ export const restaurantList = [
       }
     },
     {
-      "info": {
+      "data": {
         "id": "130292",
         "name": "Gulati Da Punjabi Dhaba",
         "cloudinaryImageId": "ujxchwpnoi2djlrcx3uz",
@@ -349,7 +349,7 @@ export const restaurantList = [
       }
     },
     {
-      "info": {
+      "data": {
         "id": "380595",
         "name": "Milk Point",
         "cloudinaryImageId": "nx7thwhialkdoiovusle",
@@ -472,7 +472,7 @@ export const restaurantList = [
       }
     },
     {
-      "info": {
+      "data": {
         "id": "194731",
         "name": "Pizza Galleria",
         "cloudinaryImageId": "a8yma8vi2wogv27ikeh8",

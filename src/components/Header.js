@@ -1,6 +1,8 @@
 // Way to add CSS in React
 // It is an object in js
 
+import { useState } from "react";
+
 const styleLogo = {
     width:"60px",
 }
@@ -15,6 +17,7 @@ const Title = () => {
 };
 
 const Header = () => {
+  const [isLoggedIn,setIsLoggedIn] = useState(true);
     return (
       <div className="header">
         <Title />
@@ -26,6 +29,11 @@ const Header = () => {
             <li>Cart</li>
           </ul>
         </div>
+        {(isLoggedIn) ? <button onClick={()=>{
+          setIsLoggedIn(false)
+        }}> Log In </button> : <button onClick={()=>{
+          setIsLoggedIn(true)
+        }}>Log Out </button>}
       </div>
     );
   };
