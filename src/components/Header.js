@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import Logo from "../assets/img/foodie.jpg";
+import { Link } from "react-router-dom";
 
 const styleLogo = {
     width:"70px",
@@ -24,9 +25,9 @@ const Header = () => {
         <Title />
         <div className="nav-items">
           <ul>
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Contact Us</li>
+            <li><Link to = "/">Home </Link></li>
+            <li><Link to = "/about">About Us</Link></li>
+            <li><Link to = "/contact">Contact Us </Link></li>
             <li>Cart</li>
           </ul>
         </div>
