@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./components/About";
 import Error from "./components/Error";
-import Contact from ".components/Contact"
+import Contact from "./components/Contact"
 
 /*
     Header 
