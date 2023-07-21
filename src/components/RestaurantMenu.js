@@ -7,34 +7,21 @@ import Menu from "./Menu";
 const RestaurantMenu =  () => {
     const {id} = useParams();
 
-    const [restaurant,setRestauraunt] = useState(null);
+    const [restaurant,setRestauraunt] = useRestaurant(id);
 
     const itemCard = restaurant?.cards[3].groupedCard.cardGroupMap.REGULAR.cards;
     const details = restaurant?.cards[0]?.card?.card?.info;
 
-    useEffect(() => {
-        getRestaurantInfo();
-      }, []);
-    
-    async function getRestaurantInfo() {
-        const data = await fetch(
-          "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.591945&lng=73.73897649999999&restaurantId=" +
-            id
-        );
-        const json = await data.json();
-        // console.log(json.data);
-        setRestauraunt(json.data);
-    }
     return !restaurant ? (
         <Shimmer />
       ) : (
         
         <div className="menu">
           <div>
-            <h1>Restraunt id: {id}</h1>
+            <h1>Restaurant id: {id}</h1>
             <h2>
             {(details.name)}</h2>
-            <img src={IMG_CDN_URL + details?.cloudinaryImageId} />
+            <div className="menu-img"><img src={IMG_CDN_URL + details?.cloudinaryImageId} /> </div>
             <h3>{details?.area}</h3>
             <h3>{details?.city}</h3>
             <h3>{details?.avgRating} stars</h3>

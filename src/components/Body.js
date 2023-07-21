@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard"; // Default Import
 import { useState, useEffect } from "react"; // Named Import
 import Shimmer from "./Shimmer";
+import useOnline from "../utils/useOnline";
 
 // Hooks - Functions in js
 
@@ -24,6 +25,7 @@ const Body = () => {
   //   console.log("calling Effect");
   // },[searchInput]); // call everytime when my searchInput Changes Only.
 
+
   useEffect(()=>{
     getRestaurants();
   },[]);
@@ -37,6 +39,13 @@ const Body = () => {
   }
 
   console.log("render");
+
+  
+  const isOnline = useOnline();
+
+  if (!isOnline){
+    return <h1> Offline, please check your internet connection!!</h1>
+  }
 
   if (!allRestaurants) return null;
 
