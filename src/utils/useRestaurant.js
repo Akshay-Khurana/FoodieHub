@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FETCH_RESTAURANT_URL } from "../config";
 
 const useRestaurant = (resId) =>{
 
@@ -9,7 +10,7 @@ const useRestaurant = (resId) =>{
     
     async function getRestaurantInfo() {
         const data = await fetch(
-          "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.591945&lng=73.73897649999999&restaurantId=" +
+           + FETCH_RESTAURANT_URL + 
             id
         );
         const json = await data.json();
