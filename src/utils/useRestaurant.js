@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { FETCH_RESTAURANT_URL } from "../config";
+import { useEffect } from "react";
 
-const useRestaurant = (resId) =>{
+const useRestaurant = (id) =>{
 
     const [restaurant,setRestauraunt] = useState(null)
     useEffect(() => {
@@ -9,12 +10,9 @@ const useRestaurant = (resId) =>{
       }, []);
     
     async function getRestaurantInfo() {
-        const data = await fetch(
-           + FETCH_RESTAURANT_URL + 
-            id
-        );
+        const data = await fetch(FETCH_RESTAURANT_URL + id);
+        console.log(data);
         const json = await data.json();
-        // console.log(json.data);
         setRestauraunt(json.data);
     }
     return restaurant;

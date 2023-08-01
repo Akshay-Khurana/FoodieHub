@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard"; // Default Import
 import { useState, useEffect } from "react"; // Named Import
 import Shimmer from "./Shimmer";
 import useOnline from "../utils/useOnline";
+import { Link } from "react-router-dom";
 
 // Hooks - Functions in js
 
@@ -33,12 +34,10 @@ const Body = () => {
   async function getRestaurants(){
     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.591945&lng=73.73897649999999&page_type=DESKTOP_WEB_LISTING");
     const json = await data.json();
-    console.log(json?.data?.cards[2]?.data?.data?.cards);
-    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setAllRestaurants(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    console.log(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurants(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
-
-  console.log("render");
 
   
   const isOnline = useOnline();
@@ -50,32 +49,21 @@ const Body = () => {
   if (!allRestaurants) return null;
 
   // if (filteredRestaurants?.length === 0) return <h1>No match found</h1>;
-
-  return filteredRestaurants.length === 0 ? <Shimmer /> : (
+  console.log(filteredRestaurants.length);
+  return filteredRestaurants.length === 0 ? <Shimmer></Shimmer> : (
     <>
-      <div className="search-container">
+      <div className=" flex justify-end items-center p-2">
         <input
           type="text"
-          className="search-input"
+          className="w-52 h-10 p-2 bg-orange-100"
           placeholder="search"
           value={searchInput}
           onChange={(e) => {
             setSearchInput(e.target.value);
           }}
         />
-        {/* <h1> {searchClicked}</h1> */}
-        {/* <button
-          className="search-btn"
-          onClick={() => {
-            searchClicked === "true"
-              ? setSearchClicked("false")
-              : setSearchClicked("true");
-          }}
-        >
-          Search
-        </button> */}
         <button
-          className="search-btn"
+          className="p-2 m-2 bg-orange-400 rounded-lg "
           onClick={() => {
             // need to filter out the restaurants
             const data = filterData(searchInput,allRestaurants);
@@ -84,13 +72,18 @@ const Body = () => {
           }}
         >Search</button>
       </div>
-      <div className="restaurant-list">
+      <div className="flex flex-col flex-wrap sm:flex-row">
         {
           // Using map to loop through each restaurant
           // and spread operator to destructure my data
         }
         {filteredRestaurants.map((restaurant) => {
-          return <RestaurantCard {...restaurant.data} key = {restaurant.data.id}/>;
+          return (
+          <Link to={"/restaurant/" + restaurant?.info?.id}>
+            <RestaurantCard {...restaurant.info} key = {restaurant.info.id}/>
+          </Link>
+          );
+
         })}
       </div>
     </>
