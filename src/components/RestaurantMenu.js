@@ -48,7 +48,7 @@ const RestaurantMenu = () => {
         <div>
           {itemCards.map((item, index) => (
             <>
-              <Menu menu={item}></Menu>
+              <Menu key = {index} menu={item}></Menu>
             </>
           ))}
         </div>

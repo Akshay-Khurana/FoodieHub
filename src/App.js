@@ -9,6 +9,8 @@ import Error from "./components/Error";
 import Contact from "./components/Contact"
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
+import { useContext } from "react";
+import UserContext from "./utils/UserContext";
 
 // Lazy Loading / Dynamic Import / Code Splitting / Chunking
 const Instamart = lazy(()=> import("./components/Instamart"));
@@ -45,11 +47,18 @@ const Instamart = lazy(()=> import("./components/Instamart"));
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const AppLayout = () => {
+  const {user} = useContext(UserContext);
   return (
     <div>
+    <UserContext.Provider
+    value = { {
+      user : user,
+      }
+    }>
       <Header />
       <Outlet />
       <Footer />
+      </UserContext.Provider>
     </div>
   );
 };

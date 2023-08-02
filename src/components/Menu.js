@@ -5,8 +5,8 @@ const Menu = ({menu}) =>{
     return (
         <>
         {/* <h2> hii </h2> */}
-        {itemcards?.map((item) => (
-            <ItemCard foodItem={item}></ItemCard>
+        {itemcards?.map((item,index) => (
+            <ItemCard key = {index} foodItem={item}></ItemCard>
           ))}
         </>
     )
