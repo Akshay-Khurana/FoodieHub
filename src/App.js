@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -6,7 +6,17 @@ import Footer from "./components/Footer";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./components/About";
 import Error from "./components/Error";
-import Contact from "./components/Contact"
+import Contact from "./components/Contact";
+import RestaurantMenu from "./components/RestaurantMenu";
+import Shimmer from "./components/Shimmer";
+import { useContext } from "react";
+import UserContext from "./utils/UserContext";
+import store from "./utils/store";
+import Cart from "./components/Cart";
+import { Provider } from "react-redux";
+
+// Lazy Loading / Dynamic Import / Code Splitting / Chunking
+const Instamart = lazy(() => import("./components/Instamart"));
 
 /*
     Header 
@@ -40,11 +50,20 @@ import Contact from "./components/Contact"
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const AppLayout = () => {
+  const { user } = useContext(UserContext);
   return (
     <div>
-      <Header />
-      <Outlet />
-      <Footer />
+      <Provider store={store}>
+        <UserContext.Provider
+          value={{
+            user: user,
+          }}
+        >
+          <Header />
+          <Outlet />
+          <Footer />
+        </UserContext.Provider>
+      </Provider>
     </div>
   );
 };
@@ -68,10 +87,26 @@ const appRouter = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback=<Shimmer />>
+            <Instamart />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "restaurant/:id",
+        element: <RestaurantMenu />,
+      },
     ],
   },
 ]);
 
-// All data router objects are passed to this component to render 
+// All data router objects are passed to this component to render
 // your app and enable the rest of the data APIs.
 root.render(<RouterProvider router={appRouter} />);
