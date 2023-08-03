@@ -5,13 +5,14 @@ import Shimmer from "./Shimmer";
 import Menu from "./Menu";
 import useRestaurant from "../utils/useRestaurant";
 
+
 const RestaurantMenu = () => {
   const { id } = useParams();
   console.log(id);
 
   const restaurant = useRestaurant(id);
 
-  const itemCards = restaurant?.cards[3].groupedCard.cardGroupMap.REGULAR.cards;
+  const itemCards = restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
   const details = restaurant?.cards[0]?.card?.card?.info;
   console.log(restaurant);
 

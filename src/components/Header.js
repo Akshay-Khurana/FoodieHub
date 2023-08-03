@@ -1,43 +1,103 @@
-// Way to add CSS in React
-// It is an object in js
-
 import { useState } from "react";
-import Logo from "../assets/img/foodie.jpg";
 import { Link } from "react-router-dom";
+import useOnline from "../utils/useOnline";
+import { useSelector } from "react-redux";
+import { CiDiscount1 } from "react-icons/ci";
+import { FiUser, FiShoppingCart } from "react-icons/fi";
+import { IconContext } from "react-icons";
+import {logo} from "../assets/img/foodie.jpg"
 
 
-const Title = () => {
-    return (
+
+const OnlineBar = () => {
+  const isOnline = useOnline();
+  return isOnline ? (
+    <div data-testid="onlineStatus" className="px-1 bg-green-400">
+      <p>You are Online!</p>
+    </div>
+  ) : (
+    <div data-testid="onlineStatus" className="px-1 bg-red-500">
+      <p>You are Offline! Please check your internet connection.</p>
+    </div>
+  );
+};
+
+const Logo = () => {
+  return (
+    <Link to={"/"}>
       <img
-        className="w-20 h-16 p-2"
-        alt="Logo"
-        src={Logo}
+        className="w-16 h-16"
+        alt="logo"
+        src={logo}
       />
-    );
+    </Link>
+  );
+};
+
+const Navbar = () => {
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
+
+  return (
+    <div>
+      <ul className="flex justify-between">
+
+        <li className="px-2 ml-4">
+          <link
+            type="image/png"
+            sizes="16x16"
+            rel="icon"
+            href=".../icons8-discount-16.png"
+          />
+
+          <div className="flex">
+            <IconContext.Provider value={{ size: "1.5em" }}>
+              <div className="mr-2">
+                <CiDiscount1 />
+              </div>
+            </IconContext.Provider>
+            Offers
+          </div>
+        </li>
+
+        <li className="px-2 ml-4">
+          <Link to={"/cart"}>
+            <div className="flex">
+              <IconContext.Provider value={{ size: "1.5em" }}>
+                <div className="mr-2">
+                  <FiShoppingCart />
+                </div>
+              </IconContext.Provider>
+              <p data-testid="cart">Cart -{cartItems.length}</p>
+            </div>
+          </Link>
+        </li>
+        <li className="px-2 ml-4">
+          <div className="flex">
+            <IconContext.Provider value={{ size: "1.5em" }}>
+              <div className="mr-2">
+                <FiUser />
+              </div>
+            </IconContext.Provider>
+            Akshay
+          </div>
+        </li>
+      </ul>
+    </div>
+  );
 };
 
 const Header = () => {
-  const [isLoggedIn,setIsLoggedIn] = useState(true);
-    return (
-      <div className="h-28 flex flex-col items-center justify-center md:flex-row md:justify-between md:h-16 shadow p-2">
-        <Title />
-        <div className="flex items-center mt-2 md:mt-0">
-          <ul className="flex items-center space-x-4">
-            <li className="px-2"><Link to = "/">Home </Link></li>
-            <li className="px-2"><Link to = "/about">About Us</Link></li>
-            <li className="px-2"><Link to = "/contact">Contact Us </Link></li>
-            <li className="px-2"><Link to = "/instamart"> Instamart</Link></li>
-            <li>Cart</li>
 
-          </ul>
-        </div>
-        {(isLoggedIn) ? <button onClick={()=>{
-          setIsLoggedIn(false)
-        }}> Log In </button> : <button onClick={()=>{
-          setIsLoggedIn(true)
-        }}>Log Out </button>}
+  return (
+    <>
+      <OnlineBar />
+      <div className="flex justify-between items-center p-2 font-c font-semibold shadow-lg border">
+        <Logo />
+        <Navbar />
       </div>
-    );
-  };
+    </>
+  );
+};
 
 export default Header;
