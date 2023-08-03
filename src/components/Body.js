@@ -36,9 +36,16 @@ const Body = () => {
   async function getRestaurants(){
     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.591945&lng=73.73897649999999&page_type=DESKTOP_WEB_LISTING");
     const json = await data.json();
-    console.log(json.data);
-    setAllRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setFilteredRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    let findItem = 0;
+    for (const cardfind of json.data.cards){
+      const restaurantData = cardfind.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      if (restaurantData!=undefined){
+        setAllRestaurants(restaurantData);
+        setFilteredRestaurants(restaurantData);
+        break;
+      }
+      findItem++;
+    }  
   }
 
   
