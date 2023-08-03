@@ -31,7 +31,6 @@ const ItemCard = ({foodItem}) => {
           )}
 
           <button
-            data-testId="addbtn"
             onClick={() => handleAddItem(foodItem)}
             className="w-20 h-8 border border-slate-400 rounded text-green-600 mt-1"
           >

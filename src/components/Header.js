@@ -5,18 +5,18 @@ import { useSelector } from "react-redux";
 import { CiDiscount1 } from "react-icons/ci";
 import { FiUser, FiShoppingCart } from "react-icons/fi";
 import { IconContext } from "react-icons";
-import {logo} from "../assets/img/foodie.jpg"
+import logo from "../assets/img/foodie.jpg"
 
 
 
 const OnlineBar = () => {
   const isOnline = useOnline();
   return isOnline ? (
-    <div data-testid="onlineStatus" className="px-1 bg-green-400">
+    <div className="px-1 bg-green-400">
       <p>You are Online!</p>
     </div>
   ) : (
-    <div data-testid="onlineStatus" className="px-1 bg-red-500">
+    <div className="px-1 bg-red-500">
       <p>You are Offline! Please check your internet connection.</p>
     </div>
   );
@@ -68,7 +68,7 @@ const Navbar = () => {
                   <FiShoppingCart />
                 </div>
               </IconContext.Provider>
-              <p data-testid="cart">Cart -{cartItems.length}</p>
+              <p>Cart -{cartItems.length}</p>
             </div>
           </Link>
         </li>

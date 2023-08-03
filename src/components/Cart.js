@@ -40,8 +40,8 @@ const Cart = () => {
           <p>{totalPrice + 40.0}.00</p>
         </div>
       </div>
-      {cart.map((item) => (
-        <CartItem foodItem={item} />
+      {cart.map((item,index) => (
+        <CartItem key = {index} foodItem={item} />
       ))}
       <button className="bg-green-300 p-1 mt-2 mb-2 font-bold border border-black-100 text-lg rounded-lg">
         Place Order
@@ -59,30 +59,3 @@ const Cart = () => {
 
 export default Cart;
 
-// import { useDispatch, useSelector } from "react-redux";
-// import FoodItem from "./FoodItem";
-// import { clearCart } from "../utils/cartSlice";
-
-// const Cart = () => {
-//   const cartItems = useSelector((store) => store.cart.items);
-//   const dispatch = useDispatch();
-//   const handleClearCart = () => {
-//     dispatch(clearCart());
-//   };
-
-//   return (
-//     <div>
-//       <h2 className="font-bold"> CartItems - {cartItems.length} </h2>
-//       <button className="bg-green-600 p-2 m-2 " onClick={() => handleClearCart()}>
-//         ClearCart
-//       </button>
-//       <div className="flex flex-wrap">
-//         {cartItems.map((item) => (
-//           <FoodItem key={item.card.info.id} {...item?.card?.info} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Cart;

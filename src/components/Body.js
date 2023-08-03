@@ -29,17 +29,15 @@ const Body = () => {
 
 
   useEffect(()=>{
-    console.log(1);
     getRestaurants();
-    console.log(11)
   },[]);
 
 
   async function getRestaurants(){
     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.591945&lng=73.73897649999999&page_type=DESKTOP_WEB_LISTING");
     const json = await data.json();
+    console.log(json.data);
     setAllRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    console.log(json);
     setFilteredRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
